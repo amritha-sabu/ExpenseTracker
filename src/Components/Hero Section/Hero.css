@@ -1,0 +1,46 @@
+.hero-content{
+    width: 100%;
+    height: 45vh;
+    background-color: #5c5c5c;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 40px;
+}
+
+.walletBalance,
+.expenses{
+    margin: 10px;
+    width: 25%;
+    height: 30vh;
+    background-color: #ebe1e1aa;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.pieChart{
+    width: 30%;
+    height: 40vh;
+}
+
+.addIncome{
+    width: 35%;
+    height: 6vh;
+    border: none;
+    border-radius: 10px;
+    background-color: #66e058;
+    color: aliceblue;
+}
+
+.addExpense{
+    width: 35%;
+    height: 6vh;
+    border: none;
+    border-radius: 10px;
+    background-color: #f64242;
+    color: aliceblue;
+}

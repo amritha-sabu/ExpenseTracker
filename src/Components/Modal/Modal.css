@@ -1,0 +1,87 @@
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(225, 221, 221, 0.833);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.addIncomeForm {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 30%;
+    height: 20vh;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    color: black;
+    display: flex;
+    flex-direction: column;
+}
+
+.addIncomeForm form {
+    display: flex;
+    justify-content: space-around;
+    gap: 10px;
+}
+
+.addIncomeForm input {
+    padding: 8px;
+    width: 30%;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px #5c5c5c;
+}
+
+.addIncomeForm button{
+    width: 30%;
+    border-radius: 10px;
+    border: none;
+    box-shadow: 0 4px 10px #5c5c5c;
+}
+
+.addButton{
+    background-color: #f87326;
+    color: aliceblue;
+}
+
+.addExpenseForm{
+    background: white;
+    padding: 10px;
+    border-radius: 10px;
+    width: 30%;
+    height: 39vh;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    color: black;
+    display: flex;
+    flex-direction: column;
+}
+
+.addExpenseForm form{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    padding: 10px;
+}
+
+.addExpenseForm input, select {
+    width: 90%; 
+    box-sizing: border-box;
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px #5c5c5c;
+}
+
+.addExpenseForm button{
+    width: 90%;
+    height: 5vh;
+    border-radius: 10px;
+    border: none;
+    box-shadow: 0 4px 10px #5c5c5c;
+}
