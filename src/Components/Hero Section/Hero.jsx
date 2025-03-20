@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import AddIncomeModal from '../Modal/AddIncomeModal';
-import './Hero.css';
 import AddExpenseModal from '../Modal/AddExpenseModal';
+import { PieChart, Pie, Cell, Tooltip, Legend } from 'recharts';
+import './Hero.css';
 
 const Hero = () => {
     const [showAddBalance, setShowAddBalance] = useState(false);
@@ -15,7 +16,7 @@ const Hero = () => {
     );
 
     const [expense, setExpense] = useState(
-        localStorage.getItem('expense')
+        JSON.parse(localStorage.getItem('expenses'))
     );
 
     const handleAddWalletBalance = (e, income) => {
@@ -33,19 +34,40 @@ const Hero = () => {
     };
 
     const handleAddExpense = (newExpense) => {
-        setExpense((prevExpense) => [...prevExpense, newExpense]);
-        localStorage.setItem('expense', JSON.stringify([...expense, newExpense]));
+        const updatedExpense = [...expense, newExpense];
+        setExpense(updatedExpense);
+        localStorage.setItem('expenses', JSON.stringify([...expense, newExpense]));
 
-        const newTotalExpense = totalExpense + newExpense.price;
+        const newTotalExpense =parseFloat(totalExpense) + parseFloat(newExpense.price);
         setTotalExpense(newTotalExpense);
         localStorage.setItem('totalExpense', newTotalExpense);
 
-        const newWalletBalance = walletBalance - newExpense.price;
-        setWalletBalance(newWalletBalance);
-        localStorage.setItem('walletBalance', newWalletBalance);
+        const newWalletBalance = parseFloat(walletBalance) - parseFloat(newExpense.price);
+        if(newWalletBalance < 0){
+            alert('You do not have enough balance to add this expense.');
+        }else{
+            setWalletBalance(newWalletBalance);
+            localStorage.setItem('walletBalance', newWalletBalance);
 
-        setShowAddExpense(false);
+            setShowAddExpense(false);
+        }
     };
+
+    const pieChartData = useMemo(() => {
+        if(!expense || expense.length === 0)
+            return [];
+        const categoryTotal = expense.reduce((acc, exp) => {
+            acc[exp.category] = (acc[exp.category] || 0) + exp.price;
+            return acc;
+        }, {});
+
+        return Object.keys(categoryTotal).map((category) => ({
+            name: category,
+            value: categoryTotal[category]
+        }));
+    },[expense]);
+
+    const COLORS = ['#FF6384', '#36A2EB', '#FFCE56', '#4CAF50'];
 
     return(
         <div className='hero-section'>
@@ -58,7 +80,29 @@ const Hero = () => {
                     <h3>Expenses: ${totalExpense}</h3>
                     <button className='addExpense' onClick={() => setShowAddExpense(true)}>+Add Expense</button>
                 </div>
-                <div className='pieCHart'></div>
+                <div className='pieCHart'>
+                    {pieChartData.length > 0 ? (
+                        <PieChart width={300} height={300}>
+                            <Pie
+                                data={pieChartData}
+                                cx="50%"
+                                cy="50%"
+                                outerRadius={100}
+                                fill="#8884d8"
+                                dataKey="value"
+                                label
+                            >
+                                {pieChartData.map((entry, index) => (
+                                    <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]}/>
+                                ))}
+                            </Pie>
+                            <Tooltip />
+                            <Legend />
+                        </PieChart>
+                    ) : (
+                        <p>No expenses added yet.</p>
+                    )}
+                </div>
             </div>
 
             {showAddBalance && (

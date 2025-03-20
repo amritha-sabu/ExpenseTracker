@@ -21,8 +21,8 @@ const AddExpenseModal = ({handleAddExpense, setShowAddExpense}) => {
                 <form onSubmit={(e) => handleSubmit(e)}>
                     <input type='text' name='title' placeholder='Title' required/>
                     <input type='number' name='price' placeholder='Price' required/>
-                    <select name='category' required>
-                        <option value="" disabled defaultChecked>Select Category</option>
+                    <select name='category' defaultValue={""} required>
+                        <option value="" disabled >Select Category</option>
                         <option value="Food">Food</option>
                         <option value="Grocery">Grocery</option>
                         <option value="Transportation">Transportation</option>
