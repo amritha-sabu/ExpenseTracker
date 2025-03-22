@@ -6,3 +6,106 @@
     gap: 20px;
     padding: 20px;
 }
+
+.recent-transactions{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.transaction{
+    background-color: #f0f0f0;
+    color: black;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+
+.icon{
+    font-size: 28px;
+    background-color: #8e8d8d;
+    border-radius: 20px;
+    padding: 5px;
+}
+
+.left{
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+
+.category{
+    font-size: 18px;
+}
+
+.date{
+    color: #737272;
+}
+
+.right{
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.price{
+    font-size: 22px;
+    color: #f44336;
+}
+
+.edit-del{
+    display: flex;
+    gap: 10px;
+}
+
+.edit{
+    font-size: 24px;
+    color: #4caf50;
+    cursor: pointer;
+}
+
+.del{
+    font-size: 24px;
+    color: #f44336;
+    cursor: pointer;
+}
+
+@media(max-width: 760px) {
+    .transactions{
+        display: flex;
+        flex-direction: column;
+        width: 90%;
+        height: fit-content;
+    }
+
+    .transaction{
+        display: flex;
+        flex-direction: column;
+        padding: 0;
+    }
+
+    .left{
+        display: flex;
+        flex-direction: column;
+        gap: 1px;
+    }
+
+    .icon{
+        font-size: 20px;
+    }
+
+    .category{
+        font-size: 15px;
+    }
+
+    .price{
+        font-size: 18px;
+    }
+
+    .edit,
+    .del{
+        font-size: 18px;
+    }
+}

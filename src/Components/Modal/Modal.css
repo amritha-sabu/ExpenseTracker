@@ -85,3 +85,45 @@
     border: none;
     box-shadow: 0 4px 10px #5c5c5c;
 }
+
+@media(max-width: 760px){
+    .overlay{
+        padding: 0px;
+    }
+
+    .addIncomeForm{
+        width: 80%;
+        height: auto;
+    }
+
+    .addIncomeForm form{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .addIncomeForm input{
+        width: 80%;
+    }
+
+    .addIncomeForm button{
+        width: 80%;
+        height: 7vh;
+    }
+
+    .addExpenseForm{
+        width: 100%;
+        height: auto;
+    }
+
+    .addExpenseForm form{
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .addExpenseForm button{
+        height: 7vh;
+    }
+}

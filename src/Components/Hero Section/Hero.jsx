@@ -4,20 +4,23 @@ import AddExpenseModal from '../Modal/AddExpenseModal';
 import { PieChart, Pie, Cell, Tooltip, Legend } from 'recharts';
 import './Hero.css';
 
-const Hero = () => {
+const Hero = ({walletBalance, setWalletBalance,
+    totalExpense, setTotalExpense,
+    expense, setExpense
+}) => {
     const [showAddBalance, setShowAddBalance] = useState(false);
     const [showAddExpense, setShowAddExpense] = useState(false);
-    const [walletBalance, setWalletBalance] = useState(
-        localStorage.getItem('walletBalance')
-    );
+    // const [walletBalance, setWalletBalance] = useState(
+    //     localStorage.getItem('walletBalance')
+    // );
 
-    const [totalExpense, setTotalExpense] = useState(
-        localStorage.getItem('totalExpense')
-    );
+    // const [totalExpense, setTotalExpense] = useState(
+    //     localStorage.getItem('totalExpense')
+    // );
 
-    const [expense, setExpense] = useState(
-        JSON.parse(localStorage.getItem('expenses'))
-    );
+    // const [expense, setExpense] = useState(
+    //     JSON.parse(localStorage.getItem('expenses'))
+    // );
 
     const handleAddWalletBalance = (e, income) => {
         e.preventDefault();

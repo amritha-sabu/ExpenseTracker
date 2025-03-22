@@ -1,6 +1,6 @@
 import './Modal.css';
 
-const AddExpenseModal = ({handleAddExpense, setShowAddExpense}) => {
+const AddExpenseModal = ({ target, handleAddExpense, setShowAddExpense}) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -19,16 +19,16 @@ const AddExpenseModal = ({handleAddExpense, setShowAddExpense}) => {
             <div className='addExpenseForm'>
                 <h2>Add Expenses</h2>
                 <form onSubmit={(e) => handleSubmit(e)}>
-                    <input type='text' name='title' placeholder='Title' required/>
-                    <input type='number' name='price' placeholder='Price' required/>
-                    <select name='category' defaultValue={""} required>
+                    <input type='text' name='title' value={target.title || ''} placeholder='Title' required/>
+                    <input type='number' name='price' value={target.price || ''} placeholder='Price' required/>
+                    <select name='category' value={target.category || ''} required>
                         <option value="" disabled >Select Category</option>
                         <option value="Food">Food</option>
                         <option value="Grocery">Grocery</option>
                         <option value="Transportation">Transportation</option>
                         <option value="Entertainment">Entertainment</option>
                     </select>
-                    <input type='date' name='date' required/>
+                    <input type='date' name='date' value={target.date || ''} required/>
                     <button type='submit' className='addButton'>Add Expense</button>
                     <button onClick={() => setShowAddExpense(false)}>Cancel</button>
                 </form>

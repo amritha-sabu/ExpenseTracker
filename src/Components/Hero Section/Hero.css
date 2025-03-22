@@ -44,3 +44,26 @@
     background-color: #f64242;
     color: aliceblue;
 }
+
+@media (max-width: 760px){
+    .hero-content{
+        width: 100%;
+        padding: 20px 0 20px 0;
+        height: fit-content;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .walletBalance,
+    .expenses{
+        width: 80%;
+        height: 35vh;
+    }
+
+    .addIncome,
+    .addExpense{
+        width: fit-content;
+        height: 7vh;
+    }
+}

@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import Hero from "../Hero Section/Hero";
 import Expenses from "../Expenses/Expenses";
 
@@ -17,6 +17,18 @@ const LandingPage = () => {
             localStorage.setItem('expenses', JSON.stringify([]));
         }
     }, []);
+
+    const [walletBalance, setWalletBalance] = useState(
+            localStorage.getItem('walletBalance')
+        );
+    
+        const [totalExpense, setTotalExpense] = useState(
+            localStorage.getItem('totalExpense')
+        );
+    
+        const [expense, setExpense] = useState(
+            JSON.parse(localStorage.getItem('expenses'))
+        );
 
     // useEffect(() => {
     //     // Clear localStorage (optional, for testing)
@@ -39,8 +51,19 @@ const LandingPage = () => {
     return(
         <div className="landing-page">
             <h1>Expense Tracker</h1>
-            <Hero />
-            <Expenses />
+            <Hero 
+            walletBalance={walletBalance} 
+            setWalletBalance={setWalletBalance} 
+            totalExpense={totalExpense}
+            setTotalExpense={setTotalExpense}
+            expense={expense}
+            setExpense={setExpense}/>
+
+            <Expenses 
+            setWalletBalance={setWalletBalance} 
+            setTotalExpense={setTotalExpense}
+            expense={expense}
+            setExpense={setExpense}/>
         </div>
     );
 };
