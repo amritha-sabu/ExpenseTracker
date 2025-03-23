@@ -1,6 +1,8 @@
+import { useState } from 'react';
 import './Modal.css';
 
 const AddExpenseModal = ({ target, handleAddExpense, setShowAddExpense}) => {
+    const [updatedExpense, setUpdatedExpense] = useState({});
 
     const handleSubmit = (e) => {
         e.preventDefault();

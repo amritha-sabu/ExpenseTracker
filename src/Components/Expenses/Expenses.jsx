@@ -31,9 +31,13 @@ const Expenses = ({ setWalletBalance,
         }
     }; 
 
-    const handleEditExpense = (exp) => {
+    const handleEditClick = (exp) => {
         setEditExpense(true);
         setTargetExpense(exp);
+    };
+
+    const handleEditExpense = (exp) => {
+        console.log(exp);
     };
     
     return(
@@ -55,7 +59,7 @@ const Expenses = ({ setWalletBalance,
                                     <p>${exp.price}</p>
                                 </div>
                                 <div className="edit-del">
-                                    <FaEdit className="edit" onClick={() => handleEditExpense(exp)}/>
+                                    <FaEdit className="edit" onClick={() => handleEditClick(exp)}/>
                                     <FaTrash  className="del" onClick={() => handleDelete(exp)}/>
                                 </div>
                             </section>
