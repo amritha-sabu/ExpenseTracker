@@ -83,12 +83,12 @@ const Hero = ({walletBalance, setWalletBalance,
             <div className='hero-content'>
                 <div className='walletBalance'>
                     <h2>Wallet Balance:</h2>
-                    <h3>${walletBalance}</h3>
+                    <h3>{walletBalance}</h3>
                     <button type='button' className='addIncome' onClick={() => setShowAddBalance(true)}>+ Add Income</button> 
                 </div>
                 <div className='expenses'>
                     <h2>Expenses:</h2>
-                    <h3>${totalExpense}</h3>
+                    <h3>{totalExpense}</h3>
                     <button type='button' className='addExpense' onClick={() => setShowAddExpense(true)}>+ Add Expense</button>
                 </div>
                 <div className='pieCHart'>
