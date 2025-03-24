@@ -17,8 +17,10 @@ const Hero = ({walletBalance, setWalletBalance,
         if(!isNaN(income)){
             if(income > 0){
                 const newBalance = parseInt(walletBalance) + parseInt(income);
+                console.log("New Wallet Balance:", newBalance);
                 setWalletBalance(newBalance);
                 localStorage.setItem('walletBalance', newBalance);
+                console.log("LocalStorage Wallet Balance:", localStorage.getItem('walletBalance')); 
                 setShowAddBalance(false);
             }else{
                 alert('Please enter a valid amount.');
@@ -80,11 +82,13 @@ const Hero = ({walletBalance, setWalletBalance,
         <div className='hero-section'>
             <div className='hero-content'>
                 <div className='walletBalance'>
-                    <h3>Wallet Balance: ${walletBalance}</h3>
+                    <h2>Wallet Balance:</h2>
+                    <h3>${walletBalance}</h3>
                     <button type='button' className='addIncome' onClick={() => setShowAddBalance(true)}>+ Add Income</button> 
                 </div>
                 <div className='expenses'>
-                    <h3>Expenses: ${totalExpense}</h3>
+                    <h2>Expenses:</h2>
+                    <h3>${totalExpense}</h3>
                     <button type='button' className='addExpense' onClick={() => setShowAddExpense(true)}>+ Add Expense</button>
                 </div>
                 <div className='pieCHart'>
