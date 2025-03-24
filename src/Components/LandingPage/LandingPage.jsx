@@ -3,6 +3,24 @@ import Hero from "../Hero Section/Hero";
 import Expenses from "../Expenses/Expenses";
 
 const LandingPage = () => {
+    // const [topExpensesData, setTopExpensesData] = useState([
+    //     {category : 'Food', price : 0},
+    //     {category : 'Transport', price : 0},
+    //     {category : 'Entertainment', price : 0},
+    //     {category : 'Grocerry', price  : 0}
+    // ]);
+
+    const [walletBalance, setWalletBalance] = useState(
+        localStorage.getItem('walletBalance')
+    );
+
+    const [totalExpense, setTotalExpense] = useState(
+        localStorage.getItem('totalExpense')
+    );
+
+    const [expense, setExpense] = useState(
+        JSON.parse(localStorage.getItem('expenses'))
+    );
 
     useEffect(() => {
         if(!localStorage.getItem('walletBalance')){
@@ -18,17 +36,22 @@ const LandingPage = () => {
         }
     }, []);
 
-    const [walletBalance, setWalletBalance] = useState(
-            localStorage.getItem('walletBalance')
-        );
+    const calculateTopExpenses = (expenses) => {
+        const categoryTotals = expenses.reduce((acc, exp) => {
+            acc[exp.category] = (acc[exp.category] || 0) + exp.price;
+            return acc;
+        }, {});
     
-        const [totalExpense, setTotalExpense] = useState(
-            localStorage.getItem('totalExpense')
-        );
+        return Object.keys(categoryTotals)
+            .map((category) => ({
+                category,
+                amount: categoryTotals[category],
+            }))
+            .sort((a, b) => b.amount - a.amount) // Sort by amount in descending order
+            .slice(0, 5); // Get the top 5 categories
+    };
     
-        const [expense, setExpense] = useState(
-            JSON.parse(localStorage.getItem('expenses'))
-        );
+    const topExpensesData = calculateTopExpenses(expense);
 
     // useEffect(() => {
     //     // Clear localStorage (optional, for testing)
@@ -63,7 +86,8 @@ const LandingPage = () => {
             setWalletBalance={setWalletBalance} 
             setTotalExpense={setTotalExpense}
             expense={expense}
-            setExpense={setExpense}/>
+            setExpense={setExpense}
+            topExpensesData={topExpensesData}/>
         </div>
     );
 };

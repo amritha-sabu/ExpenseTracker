@@ -2,18 +2,20 @@ import { useState } from "react";
 import { MdFastfood, MdLocalGroceryStore, MdDirectionsBus, MdMovie } from "react-icons/md";
 import { FaEdit, FaTrash } from "react-icons/fa"; 
 import AddExpenseModal from '../Modal/AddExpenseModal';
+import BarGraph from "../BarGraph/BarGraph";
 import './Expenses.css';
 const Expenses = ({ setWalletBalance,
     setTotalExpense,
-    expense, setExpense
+    expense, setExpense,
+    topExpensesData
 }) => {
     const [editExpense, setEditExpense] = useState(false);
     const [targetExpense, setTargetExpense] = useState({});
 
     const handleDelete = (exp) => {
         setExpense(expense.filter((item) => item.id !== exp.id));
-        setTotalExpense((prevExp) => prevExp - exp.price);
-        setWalletBalance((prevBalance) => prevBalance + exp.price);
+        setTotalExpense((prevExp) => prevExp - parseFloat(exp.price));
+        setWalletBalance((prevBalance) => parseFloat(prevBalance) + parseFloat(exp.price));
     };
 
     const getCategoryIcon = (category) => {
@@ -36,8 +38,21 @@ const Expenses = ({ setWalletBalance,
         setTargetExpense(exp);
     };
 
-    const handleEditExpense = (exp) => {
-        console.log(exp);
+    const handleEditExpense = (updatedExpense) => {
+        console.log(updatedExpense);
+        setExpense((prevExpense) => 
+        prevExpense.map((exp) => (
+            exp.id === updatedExpense.id ? updatedExpense : exp
+        )));
+
+        const oldExpense = expense.find((exp) => exp.id === updatedExpense.id);
+        if (oldExpense) {
+            const priceDifference = parseFloat(updatedExpense.price) - parseFloat(oldExpense.price);
+            setTotalExpense((prevTotal) => prevTotal + priceDifference);
+            setWalletBalance((prevBalance) => prevBalance - priceDifference);
+        }
+
+        setEditExpense(false);
     };
     
     return(
@@ -50,7 +65,7 @@ const Expenses = ({ setWalletBalance,
                             <section className="left">
                                 {getCategoryIcon(exp.category)}
                                 <div className="expense-details">
-                                    <p className="category">{exp.category}</p>
+                                    <p className="category">{exp.title}</p>
                                     <p className="date">{exp.date}</p>
                                 </div>
                             </section>
@@ -71,6 +86,7 @@ const Expenses = ({ setWalletBalance,
             </div>
             <div className="top-expenses">
                 <h2>Top Expenses</h2>
+                <BarGraph data={topExpensesData}/>
             </div>
 
             {editExpense && (

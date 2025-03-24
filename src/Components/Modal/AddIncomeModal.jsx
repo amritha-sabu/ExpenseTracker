@@ -13,7 +13,8 @@ const AddIncomeModal = ({handleAddWalletBalance, setShowAddBalance}) => {
             <div className='addIncomeForm'>
                 <h2>Add Balance</h2>
                 <form onSubmit={(e) => handleAddWalletBalance(e, income)}>
-                    <input type='number' 
+                    <input 
+                    type='number' 
                     name='income' 
                     placeholder='Income Amount'
                     onChange={handleInputChange}

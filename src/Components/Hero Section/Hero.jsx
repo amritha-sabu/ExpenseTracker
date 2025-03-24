@@ -6,21 +6,11 @@ import './Hero.css';
 
 const Hero = ({walletBalance, setWalletBalance,
     totalExpense, setTotalExpense,
-    expense, setExpense
+    expense, setExpense,
 }) => {
     const [showAddBalance, setShowAddBalance] = useState(false);
     const [showAddExpense, setShowAddExpense] = useState(false);
-    // const [walletBalance, setWalletBalance] = useState(
-    //     localStorage.getItem('walletBalance')
-    // );
-
-    // const [totalExpense, setTotalExpense] = useState(
-    //     localStorage.getItem('totalExpense')
-    // );
-
-    // const [expense, setExpense] = useState(
-    //     JSON.parse(localStorage.getItem('expenses'))
-    // );
+    
 
     const handleAddWalletBalance = (e, income) => {
         e.preventDefault();
@@ -37,20 +27,34 @@ const Hero = ({walletBalance, setWalletBalance,
     };
 
     const handleAddExpense = (newExpense) => {
-        const updatedExpense = [...expense, newExpense];
-        setExpense(updatedExpense);
-        localStorage.setItem('expenses', JSON.stringify([...expense, newExpense]));
-
-        const newTotalExpense =parseFloat(totalExpense) + parseFloat(newExpense.price);
-        setTotalExpense(newTotalExpense);
-        localStorage.setItem('totalExpense', newTotalExpense);
-
         const newWalletBalance = parseFloat(walletBalance) - parseFloat(newExpense.price);
         if(newWalletBalance < 0){
             alert('You do not have enough balance to add this expense.');
+            return;
         }else{
+            const updatedExpense = [...expense, newExpense];
+            setExpense(updatedExpense);
+            localStorage.setItem('expenses', JSON.stringify([...expense, newExpense]));
+
+            const newTotalExpense =parseFloat(totalExpense) + parseFloat(newExpense.price);
+            setTotalExpense(newTotalExpense);
+            localStorage.setItem('totalExpense', newTotalExpense);
+
             setWalletBalance(newWalletBalance);
             localStorage.setItem('walletBalance', newWalletBalance);
+
+            // setTopExpensesData((prevSpend) => {
+            //     const updatedSpend = prevSpend.map((item) => {
+            //         if(item.category === newExpense.category){
+            //             return {
+            //                 ...item,
+            //                 price : parseFloat(item.price) + parseFloat(newExpense.price),
+            //             };
+            //         }
+            //         return item;
+            //     });
+            //     return updatedSpend;
+            // });
 
             setShowAddExpense(false);
         }
@@ -77,11 +81,11 @@ const Hero = ({walletBalance, setWalletBalance,
             <div className='hero-content'>
                 <div className='walletBalance'>
                     <h3>Wallet Balance: ${walletBalance}</h3>
-                    <button className='addIncome' onClick={() => setShowAddBalance(true)}>+Add Income</button> 
+                    <button type='button' className='addIncome' onClick={() => setShowAddBalance(true)}>+ Add Income</button> 
                 </div>
                 <div className='expenses'>
                     <h3>Expenses: ${totalExpense}</h3>
-                    <button className='addExpense' onClick={() => setShowAddExpense(true)}>+Add Expense</button>
+                    <button type='button' className='addExpense' onClick={() => setShowAddExpense(true)}>+ Add Expense</button>
                 </div>
                 <div className='pieCHart'>
                     {pieChartData.length > 0 ? (
