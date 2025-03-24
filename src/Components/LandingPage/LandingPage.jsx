@@ -37,6 +37,10 @@ const LandingPage = () => {
     }, []);
 
     const calculateTopExpenses = (expenses) => {
+        if (!expenses || expenses.length === 0) {
+            return [];
+        }
+
         const categoryTotals = expenses.reduce((acc, exp) => {
             acc[exp.category] = (acc[exp.category] || 0) + exp.price;
             return acc;
