@@ -19,7 +19,7 @@ const LandingPage = () => {
     );
 
     const [expense, setExpense] = useState(
-        JSON.parse(localStorage.getItem('expenses'))
+        JSON.parse(localStorage.getItem('expenses')) || []
     );
 
     useEffect(() => {
