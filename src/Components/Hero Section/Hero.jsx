@@ -82,7 +82,7 @@ const Hero = ({walletBalance, setWalletBalance,
         <div className='hero-section'>
             <div className='hero-content'>
                 <div className='walletBalance'>
-                    <h2>Wallet Balance:</h2>
+                    <h2>Wallet Balance</h2>
                     <h3>{walletBalance}</h3>
                     <button type='button' className='addIncome' onClick={() => setShowAddBalance(true)}>+ Add Income</button> 
                 </div>
