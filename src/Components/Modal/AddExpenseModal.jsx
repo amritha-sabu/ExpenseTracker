@@ -40,7 +40,7 @@ const AddExpenseModal = ({ target, handleAddExpense, setShowAddExpense}) => {
                         <option value="" disabled >Select Category</option>
                         <option value="Food">Food</option>
                         <option value="Grocery">Grocery</option>
-                        <option value="Transportation">Transportation</option>
+                        <option value="Travel">Travel</option>
                         <option value="Entertainment">Entertainment</option>
                     </select>
                     <input type='date' name='date' value={formData.date} onChange={handleChange} required/>
