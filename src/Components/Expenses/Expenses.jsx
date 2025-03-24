@@ -24,7 +24,7 @@ const Expenses = ({ setWalletBalance,
                 return <MdFastfood className="icon" />;
             case "Grocery":
                 return <MdLocalGroceryStore className="icon" />;
-            case "Transportation":
+            case "Travel":
                 return <MdDirectionsBus className="icon" />;
             case "Entertainment":
                 return <MdMovie className="icon" />;
