@@ -3,36 +3,33 @@ import Hero from "../Hero Section/Hero";
 import Expenses from "../Expenses/Expenses";
 
 const LandingPage = () => {
-    // const [topExpensesData, setTopExpensesData] = useState([
-    //     {category : 'Food', price : 0},
-    //     {category : 'Transport', price : 0},
-    //     {category : 'Entertainment', price : 0},
-    //     {category : 'Grocerry', price  : 0}
-    // ]);
 
-    const [walletBalance, setWalletBalance] = useState(
-        parseFloat(localStorage.getItem('balance'))
-    );
+    const [walletBalance, setWalletBalance] = useState(0);
 
-    const [totalExpense, setTotalExpense] = useState(
-        parseFloat(localStorage.getItem('totalExpense'))
-    );
+    const [totalExpense, setTotalExpense] = useState(0);
 
-    const [expense, setExpense] = useState(
-        JSON.parse(localStorage.getItem('expenses')) || []
-    );
+    const [expense, setExpense] = useState([]);
 
     useEffect(() => {
         if(!localStorage.getItem('balance')){
             localStorage.setItem('balance', 5000);
+            setWalletBalance(500);
+        }else{
+            setWalletBalance(parseInt(localStorage.getItem('balance')));
         }
 
         if(!localStorage.getItem('totalExpense')){
             localStorage.setItem('totalExpense', 0);
+            setTotalExpense(0)
+        }else{
+            setTotalExpense(parseInt(localStorage.getItem('totalExpense')));
         }
 
         if(!localStorage.getItem('expenses')){
             localStorage.setItem('expenses', JSON.stringify([]));
+            setExpense([])
+        }else{
+            setExpense(JSON.parse(localStorage.getItem('expenses')));
         }
     }, []);
 
