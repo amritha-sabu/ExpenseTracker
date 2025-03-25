@@ -13,7 +13,7 @@ const LandingPage = () => {
     useEffect(() => {
         if(!localStorage.getItem('balance')){
             localStorage.setItem('balance', 5000);
-            setWalletBalance(500);
+            setWalletBalance(5000);
         }else{
             setWalletBalance(parseInt(localStorage.getItem('balance')));
         }
