@@ -19,8 +19,8 @@ const Hero = ({walletBalance, setWalletBalance,
                 const newBalance = parseInt(walletBalance) + parseInt(income);
                 console.log("New Wallet Balance:", newBalance);
                 setWalletBalance(newBalance);
-                localStorage.setItem('walletBalance', newBalance);
-                console.log("LocalStorage Wallet Balance:", localStorage.getItem('walletBalance')); 
+                localStorage.setItem('balance', newBalance);
+                console.log("LocalStorage Wallet Balance:", localStorage.getItem('balance')); 
                 setShowAddBalance(false);
             }else{
                 alert('Please enter a valid amount.');
@@ -43,7 +43,7 @@ const Hero = ({walletBalance, setWalletBalance,
             localStorage.setItem('totalExpense', newTotalExpense);
 
             setWalletBalance(newWalletBalance);
-            localStorage.setItem('walletBalance', newWalletBalance);
+            localStorage.setItem('balance', newWalletBalance);
 
             // setTopExpensesData((prevSpend) => {
             //     const updatedSpend = prevSpend.map((item) => {

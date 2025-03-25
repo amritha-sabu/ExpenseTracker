@@ -11,7 +11,7 @@ const LandingPage = () => {
     // ]);
 
     const [walletBalance, setWalletBalance] = useState(
-        parseFloat(localStorage.getItem('walletBalance'))
+        parseFloat(localStorage.getItem('balance'))
     );
 
     const [totalExpense, setTotalExpense] = useState(
@@ -23,8 +23,8 @@ const LandingPage = () => {
     );
 
     useEffect(() => {
-        if(!localStorage.getItem('walletBalance')){
-            localStorage.setItem('walletBalance', 5000);
+        if(!localStorage.getItem('balance')){
+            localStorage.setItem('balance', 5000);
         }
 
         if(!localStorage.getItem('totalExpense')){
